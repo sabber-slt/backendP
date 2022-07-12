@@ -27,6 +27,7 @@ export const updateBaseController = async (
 ) => {
   const { id }: any = req.params;
   const { title, content, media, slug } = req.body;
+  console.log(title);
 
   try {
     const base = await updateBaseService({ title, content, media, slug, id });

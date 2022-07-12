@@ -1,8 +1,8 @@
-import { ProjectPost, ProjectProps } from '../types/project.types';
+import { ArticlePost, ArticleProps } from '../types/article.types';
 import prisma from '../utils/database';
 import logger from '../utils/logger';
 
-export const createProjectService = async ({
+export const createArticletService = async ({
   title,
   desc,
   media,
@@ -14,10 +14,11 @@ export const createProjectService = async ({
   media3,
   content4,
   media4,
-  download,
-}: ProjectPost) => {
+  content5,
+  media5,
+}: ArticlePost) => {
   try {
-    const project = await prisma.project.create({
+    const article = await prisma.article.create({
       data: {
         title,
         desc,
@@ -30,16 +31,17 @@ export const createProjectService = async ({
         media3,
         content4,
         media4,
-        download,
+        content5,
+        media5,
       },
     });
-    return project;
+    return article;
   } catch (e: any) {
     logger.info(e);
   }
 };
 
-export const updateProjectService = async ({
+export const updateArticleService = async ({
   id,
   title,
   desc,
@@ -52,10 +54,11 @@ export const updateProjectService = async ({
   media3,
   content4,
   media4,
-  download,
-}: ProjectProps) => {
+  content5,
+  media5,
+}: ArticleProps) => {
   const idInt = parseInt(id as unknown as string);
-  const project = await prisma.project.update({
+  const article = await prisma.article.update({
     where: { id: idInt },
     data: {
       title,
@@ -69,21 +72,30 @@ export const updateProjectService = async ({
       media3,
       content4,
       media4,
-      download,
+      content5,
+      media5,
     },
   });
-  return project;
+  return article;
 };
 
-export const getProjectService = async () => {
-  const project = await prisma.project.findMany();
-  return project;
+export const getArticleService = async () => {
+  const edu = await prisma.article.findMany();
+  return edu;
 };
 
-export const getProjectByIdService = async (id: string) => {
+export const deleteArticleService = async (id: string) => {
   const idInt = parseInt(id as unknown as string);
-  const project = await prisma.project.findMany({
+  const article = await prisma.article.delete({
     where: { id: idInt },
   });
-  return project;
+  return article;
+};
+
+export const getArticleByIdService = async (id: string) => {
+  const idInt = parseInt(id as unknown as string);
+  const article = await prisma.article.findMany({
+    where: { id: idInt },
+  });
+  return article;
 };

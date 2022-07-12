@@ -3,6 +3,7 @@ import logger from '../utils/logger';
 import { Request, Response } from 'express';
 import {
   createProjectService,
+  getProjectByIdService,
   getProjectService,
   updateProjectService,
 } from '../services/project.service';
@@ -94,6 +95,17 @@ export const updateProjectController = async (
 export const getProjectController = async (req: Request, res: Response) => {
   try {
     const project = await getProjectService();
+    res.status(200).json(project);
+  } catch (e: any) {
+    logger.info(e);
+    res.status(500).json(e.message);
+  }
+};
+
+export const getProjectByIdController = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const project = await getProjectByIdService(id);
     res.status(200).json(project);
   } catch (e: any) {
     logger.info(e);

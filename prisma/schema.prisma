@@ -34,3 +34,40 @@ model Project {
   media4   String?
   download String?
 }
+
+model Edu {
+  id       Int     @id @default(autoincrement())
+  title    String
+  desc     String
+  media    String?
+  content1 String
+  code1    String?
+  content2 String
+  code2    String?
+  content3 String?
+  code3    String?
+  content4 String?
+  code4    String?
+  content5 String?
+  code5    String?
+  content6 String?
+  code6    String?
+
+}
+
+model Article {
+  id       Int     @id @default(autoincrement())
+  title    String
+  desc     String
+  media    String?
+  content1 String
+  media1   String?
+  content2 String
+  media2   String?
+  content3 String?
+  media3   String?
+  content4 String?
+  media4   String?
+  content5 String?
+  media5   String?
+}
